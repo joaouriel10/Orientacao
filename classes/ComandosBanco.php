@@ -27,7 +27,7 @@
             $resultado = mysqli_query($con, $select);
             
             if($resultado){
-                return print $resultado;
+                //mysqli_fetch();
             }else{
                 return print -1;
             }
