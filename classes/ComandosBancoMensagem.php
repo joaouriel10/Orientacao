@@ -3,7 +3,8 @@
     include_once 'BancoDados.php';
     include_once 'ComandosBancoUsuario.php';
 
-    class ComandoMensagem{
+    class ComandoMensagem
+    {
 
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario)
         {
@@ -22,26 +23,19 @@
                     foreach(getCodigo() as $codigos){
                         if ($codigos == $codigoDestinatario) {
                             if ($codigoDestinatario != $codigoRemetente) {  
-                                
+                                $cadastro = mysqli_query($con, $insert);
+                                if ($cadastro) {
+                                    return true;
+                                }
+                                    return false;
                             }
                         }
                     }
 
                 }else{
-                    $cadastro = mysqli_query($con, $insert);
-                    if ($cadastro) {
-                        $resposta = "Usuario cadastrado \n";
-                    }else{
-                        $cadastro = "Erro no banco";
-                        return print $cadastro;
-                    }
-                }   
-            }
-
-            if($cadastro){
-                if($codigoDestinatario == $codigoRemetente){
-                    return print "O usuario não pode mandar para mensagem para ele mesmo";
+                    return false;
                 }
             }
+            return false;
         }
     }
