@@ -1,6 +1,6 @@
 <?php 
 
-    class Texto extends Usuario{
+    class Texto{
 
         var $Texto;
 

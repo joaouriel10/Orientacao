@@ -1,6 +1,4 @@
 <?php
-
-
          function connect()
         {
             define('HOST', 'localhost');
@@ -20,28 +18,32 @@
             $cadastro = mysqli_query($con, $insert);
 
             if($cadastro){
-                $resposta = true;
+                foreach(getCodigo() as $codigos){
+                    if($codigos == $codigo){
+                        $resposta = "Codigo já cadastrado \n";
+                        return print $resposta;
+                    }else{
+                        $resposta = "Usuario cadastrado \n";
+                    return print $resposta;
+                    }   
+                }
             }else{
-                $resposta = false;
-            }
-            return $resposta;
+                return print "Codigo já cadastrado \n";
+            } 
         }
         function getCodigo()
         {
             $con = connect();
 
-            $select = "SELECT codigo FROM usuario;";
+            $select = "SELECT codigo FROM usuario";
 
             $resultado = mysqli_query($con, $select);
+
+            $result = mysqli_fetch_row($resultado);
             
             if($resultado){
-                return print $resultado;
+                return $result;
             }else{
                 return print -1;
             }
         }
-
-
-        cadastrarUsuario("Joao", 123);
-
-        getCodigo();

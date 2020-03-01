@@ -1,6 +1,6 @@
 <?php 
 
-    abstract class Conexaobanco{
+     class Conexaobanco{
 
         public function connect()
         {

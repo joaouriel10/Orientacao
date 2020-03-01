@@ -1,21 +1,22 @@
 <?php
 
-     class Usuario extends ComandosBanco{
+     class Usuario{
 
         private $Nome;
         private $Codigo;
 
 
-        public function __construct($nome, $codigo)
-        {
+        public function setUsuario($nome){
             $this->Nome = $nome;
+        }
+        public function setCodigo($codigo){
             $this->Codigo = $codigo;
-            if($this->getCodigo() == $this->Codigo){
-                return false;
-            }else{
-                $this->cadastrarUsuario($this->Nome, $this->Codigo); 
-                return true;
-            }
+        }
+        public function getUsuario(){
+            return $this->Nome;
+        }
+        public function getCodigo(){
+            return $this->Codigo;
         }
     }
 
