@@ -16,7 +16,7 @@
     $cadastrado = $cadastro->cadastrarMensagem($mensagem->getCodRemetente(), $mensagem->getTexto(), $mensagem->getCodDestinatario());
     
     if($cadastrado){
-        header('Location: ../html/mensagem.php');
+        header('Location: ../html/EnviarMensagem.php');
     }else{
         header('Location: ../html/index.html');
     }
