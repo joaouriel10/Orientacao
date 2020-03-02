@@ -20,10 +20,10 @@
             }
         ?>
         <div class="container">
-            <form>
+            <form method="post" action="../App/CadastrarMensagem.php">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="exampleFormControlSelect1" name="codigo_remetente">
                     <?php
                         include_once '../classes/BancoDados.php';
                         include_once '../classes/ComandosBancoUsuario.php';
@@ -32,16 +32,18 @@
 
                         $conexao = $con->connect();
 
-                        $select = "SELECT codigo FROM usuario LIMIT 10";
+                        $select = "SELECT codigo FROM usuario";
 
                         $result = mysqli_query ($conexao, $select);
                         
                         while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                            echo "<option value=$dress1[codFornecedor]>";
+                            
                             foreach($dress1 as $codigos){
+                                echo "<option value=$codigos>";
                                 echo "$codigos";
+                                "</option>";
                             } 
-                            "</option>";
+                            
                         }
 
                         mysqli_close($conexao);
@@ -51,7 +53,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Destinatário</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="exampleFormControlSelect1" name="codigo_destinatario">
                     <?php
                         include_once '../classes/BancoDados.php';
                         include_once '../classes/ComandosBancoUsuario.php';
@@ -60,16 +62,18 @@
 
                         $conexao = $con->connect();
 
-                        $select = "SELECT codigo FROM usuario LIMIT 10";
+                        $select = "SELECT codigo FROM usuario";
 
                         $result = mysqli_query ($conexao, $select);
                         
                         while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                            echo "<option name='codigo' value=$dress1[codFornecedor]> ";
+                            
                             foreach($dress1 as $codigos){
+                                echo "<option value=$codigos>";
                                 echo "$codigos";
+                                "</option>";
                             } 
-                            "</option>";
+                            
                         }
 
                         mysqli_close($conexao);
@@ -79,7 +83,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mensagem</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                 <a href="index.html" type="submit" class="btn btn-primary" role="button" aria-pressed="true">Voltar</a>
