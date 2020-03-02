@@ -4,25 +4,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <title>Cadastrar Usuario</title>
+        <title>Mensagem</title>
     </head>
     <body>
-        <?php
-            
-
-        ?>
         <div class="container">
-            <form>
+            <form method="post" action="../App/CadastrarMensagem.php">
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Nome: </label>
-                    <input type="text" class="form-control" id="" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Codigo</label>
-                    <input type="number" class="form-control" id="" placeholder="Codigo">
-                </div>
-                <a href="" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar</a>
-                <a href="index.html" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voltar</a>
+                    <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="codigo_remetente">
+                    <?php
+                        include_once '../classes/BancoDados.php';
+                        include_once '../classes/ComandosBancoUsuario.php';
+
+                        $con = new ConectarBancoDados();
+
+                        $conexao = $con->connect();
+
+                        $select = "SELECT codigo FROM usuario";
+
+                        $result = mysqli_query ($conexao, $select);
+                        
+                        while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                            
+                            foreach($dress1 as $codigos){
+                                echo "<option value=$codigos>";
+                                echo "$codigos";
+                                "</option>";
+                            } 
+                            
+                        }
+
+                        mysqli_close($conexao);
+
+                    ?>
+                    </select>
+                    <br>
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+                <a href="index.html" type="submit" class="btn btn-primary" role="button" aria-pressed="true">Voltar</a>
             </form>
         </div>
     </body>

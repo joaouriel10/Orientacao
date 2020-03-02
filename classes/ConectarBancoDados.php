@@ -1,6 +1,6 @@
 <?php 
 
-     class Conexaobanco{
+     class ConectarBancoDados{
 
         public function connect()
         {

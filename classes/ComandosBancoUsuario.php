@@ -6,7 +6,7 @@
         
         public function cadastrarUsuario($nome, $codigo)
         {
-            $Conexao = new Conexaobanco();
+            $Conexao = new ConectarBancoDados();
 
             $con = $Conexao::connect();
 
@@ -25,7 +25,7 @@
 
         public function getCodigo()
         {
-            $Conexao = new Conexaobanco();
+            $Conexao = new ConectarBancoDados();
 
             $con = $Conexao::connect();
 
@@ -38,7 +38,7 @@
             if($resultado){
                 return $result;
             }else{
-                return print -2;
+                return false;
             }
         }
 

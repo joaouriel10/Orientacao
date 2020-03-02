@@ -28,7 +28,7 @@
                         include_once '../classes/BancoDados.php';
                         include_once '../classes/ComandosBancoUsuario.php';
 
-                        $con = new Conexaobanco();
+                        $con = new ConectarBancoDados();
 
                         $conexao = $con->connect();
 
@@ -58,7 +58,7 @@
                         include_once '../classes/BancoDados.php';
                         include_once '../classes/ComandosBancoUsuario.php';
 
-                        $con = new Conexaobanco();
+                        $con = new ConectarBancoDados();
 
                         $conexao = $con->connect();
 

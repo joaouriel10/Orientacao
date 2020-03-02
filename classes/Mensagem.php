@@ -1,6 +1,6 @@
 <?php 
 
-    class Texto{
+    class Mensagem{
 
         var $Texto;
         var $codigoRemetente;

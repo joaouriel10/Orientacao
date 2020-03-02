@@ -6,7 +6,7 @@
     {
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario)
         {
-            $Conexao = new Conexaobanco();
+            $Conexao = new ConectarBancoDados();
 
             $con = $Conexao::connect();
 
