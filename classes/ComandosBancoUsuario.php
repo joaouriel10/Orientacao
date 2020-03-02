@@ -6,8 +6,9 @@
         
         public function cadastrarUsuario($nome, $codigo)
         {
+            $Conexao = new Conexaobanco();
 
-            $con = $this->Conexao->connect();
+            $con = $Conexao::connect();
 
             $insert = "INSERT INTO usuario (nome, codigo) VALUES('$nome','$codigo')";
 
@@ -24,8 +25,9 @@
 
         public function getCodigo()
         {
+            $Conexao = new Conexaobanco();
 
-            $con = $this->Conexao->connect();
+            $con = $Conexao::connect();
 
             $select = "SELECT codigo FROM usuario";
 

@@ -5,17 +5,26 @@
         private $Nome;
         private $Codigo;
 
+        public function __construct($nome, $codigo)
+        {
+            $this->Nome = $nome;
+            $this->Codigo = $codigo;   
+        }
 
-        public function setUsuario($nome){
+        public function setNome($nome)
+        {
             $this->Nome = $nome;
         }
-        public function setCodigo($codigo){
+        public function setCodigo($codigo)
+        {
             $this->Codigo = $codigo;
         }
-        public function getUsuario(){
+        public function getNome()
+        {
             return $this->Nome;
         }
-        public function getCodigo(){
+        public function getCodigo()
+        {
             return $this->Codigo;
         }
     }

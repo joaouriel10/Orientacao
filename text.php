@@ -25,24 +25,29 @@
             }
         }
 
-        function cadastrarUsuario($nome, $codigo)
+        function cadastrarUsuario($codigoRemetente, $texto, $codigoDestinatario)
         {
             $con = connect();
 
-            $insert = "INSERT INTO usuario (nome, codigo) VALUES('$nome','$codigo')";
+            $insert = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
+            
+            if($$codigoDestinatario == $codigoRemetente){
+                echo "Codigos iguais";
+                return false;
+            }
 
             $cadastro = mysqli_query($con, $insert);
 
-            if($cadastro){
-                echo "Usuario cadastrado \n";
+            if ($cadastro) {
+                echo "texto Enviado com sucesso \n";
                 return true;
-                
             }
-                echo "Usuario já cadastrado \n";
-                return false;
+            echo "Falha ao enviar mensagem \n";
+            return false;
         }
         
 
         //getCodigo();
 
-        cadastrarUsuario('joao uriel', 123);
+        cadastrarUsuario(100, 'teste', 100);
+        
