@@ -5,12 +5,6 @@
         private $Nome;
         private $Codigo;
 
-        public function __construct($nome, $codigo)
-        {
-            $this->Nome = $nome;
-            $this->Codigo = $codigo;   
-        }
-
         public function setNome($nome)
         {
             $this->Nome = $nome;

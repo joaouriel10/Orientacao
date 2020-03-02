@@ -56,10 +56,18 @@
         }
 
 
-        //getCodigo();
-
-        //cadastrarUsuario(11, 'teste', 100);
         
-        //verificador();
+        $select = "SELECT codigo FROM usuario LIMIT 10";
 
-        echo "\n";
+        $result = mysqli_query ($conexao, $select);
+        
+        echo "<select size=nomeFornecedor value=''>Selecione um local</option>";
+        while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            echo "<option value=$dress1[codFornecedor]>$dress1[nomeFornecedor]</option>";
+        }
+        echo "</select>"; mysqli_close($conexao);
+
+
+        foreach($codigos->getCodigo() as $codigo){
+            echo $codigo;
+        }

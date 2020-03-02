@@ -10,7 +10,7 @@
 
             $con = $Conexao::connect();
 
-            $insert = "INSERT INTO usuario (nome, codigo) VALUES('$nome','$codigo')";
+            $insert = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
 
             $cadastro = mysqli_query($con, $insert);
 
@@ -38,7 +38,7 @@
             if($resultado){
                 return $result;
             }else{
-                return print -1;
+                return print -2;
             }
         }
 

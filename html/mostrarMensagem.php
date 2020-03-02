@@ -7,18 +7,22 @@
         <title>Cadastrar Usuario</title>
     </head>
     <body>
+        <?php
+            
+
+        ?>
         <div class="container">
-            <form method="POST" action="http://localhost/projeto01/Trabalho_Logica/App/Aplicativo.php">
+            <form>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nome: </label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome">
+                    <input type="text" class="form-control" id="" placeholder="Nome">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Codigo</label>
-                    <input type="number" class="form-control" name="codigo" placeholder="Codigo">
+                    <input type="number" class="form-control" id="" placeholder="Codigo">
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-                <a href="index.html" type="submit" class="btn btn-primary" role="button" aria-pressed="true">Voltar</a>
+                <a href="" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar</a>
+                <a href="index.html" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voltar</a>
             </form>
         </div>
     </body>

@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,18 @@
         <title>Mensagem</title>
     </head>
     <body>
+        <?php
+            include_once '../classes/BancoDados.php';
+            include_once '../classes/ComandosBancoUsuario.php';
+
+            $verificacao = new ComandosUsuario;
+
+            $cod = $verificacao->getCodigo();
+
+            if(!$cod){
+                header('Location: http://localhost/projeto01/Trabalho_Logica/html/cadastro.php');
+            }
+        ?>
         <div class="container">
             <form>
                 <div class="form-group">
@@ -15,25 +27,54 @@
                     <?php
                         include_once '../classes/BancoDados.php';
                         include_once '../classes/ComandosBancoUsuario.php';
-            
-                        $verificacao = new ComandosUsuario;
-            
-                        $cod = $verificacao->getCodigo();
 
-                        if(!$cod){
-                            header('Location: http://localhost/projeto01/Trabalho_Logica/html/cadastro.php');
+                        $con = new Conexaobanco();
+
+                        $conexao = $con->connect();
+
+                        $select = "SELECT codigo FROM usuario LIMIT 10";
+
+                        $result = mysqli_query ($conexao, $select);
+                        
+                        while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                            echo "<option value=$dress1[codFornecedor]>";
+                            foreach($dress1 as $codigos){
+                                echo "$codigos";
+                            } 
+                            "</option>";
                         }
+
+                        mysqli_close($conexao);
+
                     ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Destinatário</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <?php
+                        include_once '../classes/BancoDados.php';
+                        include_once '../classes/ComandosBancoUsuario.php';
+
+                        $con = new Conexaobanco();
+
+                        $conexao = $con->connect();
+
+                        $select = "SELECT codigo FROM usuario LIMIT 10";
+
+                        $result = mysqli_query ($conexao, $select);
+                        
+                        while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                            echo "<option value=$dress1[codFornecedor]>";
+                            foreach($dress1 as $codigos){
+                                echo "$codigos";
+                            } 
+                            "</option>";
+                        }
+
+                        mysqli_close($conexao);
+
+                    ?>
                     </select>
                 </div>
                 <div class="form-group">
