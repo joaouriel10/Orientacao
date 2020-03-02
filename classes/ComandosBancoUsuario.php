@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'BancoDados.php';
+    include_once 'ConectarBancoDados.php';
 
     class ComandosUsuario {
         

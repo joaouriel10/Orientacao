@@ -1,7 +1,7 @@
 <?php 
 
     include_once '../classes/ComandosBancoMensagem.php';
-    include_once '../classes/Texto.php';
+    include_once '../classes/Mensagem.php';
 
     $codRemetente = $_POST['codigo_remetente'];
     $codDestinatario = $_POST['codigo_destinatario'];
@@ -13,7 +13,7 @@
     $cadastro = new ComandoMensagem;
     $cadastrado = $cadastro->cadastrarMensagem($mensagem->getCodRemetente(), $mensagem->getTexto(), $mensagem->getCodDestinatario());
     if($cadastrado){
-        header('Location: ../html/mensagem.php');
+        header('Location: ../html/EnviarMensagem.php');
     }else{
         header('Location: ../html/index.html');
     }

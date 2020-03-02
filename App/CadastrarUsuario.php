@@ -11,7 +11,7 @@
     $cadastro = new ComandosUsuario;
     $cadastrado = $cadastro->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo());
     if($cadastrado){
-        header('Location: ../html/cadastro.php');
+        header('Location: ../html/CadastroUsuario.php');
     }else{
         header('Location: ../html/index.html');
     }
