@@ -6,12 +6,6 @@
         var $codigoRemetente;
         var $codigoDestinatario;
 
-        //public function __construct($texto, $codRemetente, $codDestinatario)
-        //{
-        //    $this->Texto = $texto;
-        //    $this->codigoRemetente = $codRemetente;
-        //    $this->codigoDestinatario = $codDestinatario;
-        //}
         public function setTexto($texto)
         {
             $this->Texto = $texto;

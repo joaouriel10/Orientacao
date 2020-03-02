@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <form method="post" action="http://localhost/projeto01/Trabalho_Logica/App/CadastrarUsuario.php">
+            <form method="post" action="../App/CadastrarUsuario.php">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nome: </label>
                     <input type="text" class="form-control" name="nome" placeholder="Nome">

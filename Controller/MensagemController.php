@@ -2,24 +2,24 @@
 
     include_once 'ConectarBancoDados.php';
 
-    class ComandoMensagem
+    class MensagemController
     {
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario)
         {
-            $Logar = new ConectarBancoDados();
+            $logar = new ConectarBancoDados();
 
-            $Conexao = $Logar::LogarBanco();
+            $conexao = $logar::LogarBanco();
 
-            $Insert = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
+            $query = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
             
             if($$codigoDestinatario == $codigoRemetente){
                 echo "Codigos iguais";
                 return false;
             }
 
-            $Cadastro = mysqli_query($Conexao, $Insert);
+            $cadastro = mysqli_query($conexao, $query);
 
-            if ($Cadastro) {
+            if ($cadastro) {
                 echo "texto Enviado com sucesso \n";
                 return true;
             }
