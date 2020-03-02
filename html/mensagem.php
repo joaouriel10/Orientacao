@@ -65,7 +65,7 @@
                         $result = mysqli_query ($conexao, $select);
                         
                         while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                            echo "<option value=$dress1[codFornecedor]>";
+                            echo "<option name='codigo' value=$dress1[codFornecedor]> ";
                             foreach($dress1 as $codigos){
                                 echo "$codigos";
                             } 
@@ -81,8 +81,8 @@
                     <label for="exampleFormControlTextarea1">Mensagem</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <a href="" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar</a>
-                <a href="index.html" type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voltar</a>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a href="index.html" type="submit" class="btn btn-primary" role="button" aria-pressed="true">Voltar</a>
             </form>
         </div>
     </body>
