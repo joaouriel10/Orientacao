@@ -6,20 +6,20 @@
     {
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario)
         {
-            $Conexao = new ConectarBancoDados();
+            $Logar = new ConectarBancoDados();
 
-            $con = $Conexao::connect();
+            $Conexao = $Logar::LogarBanco();
 
-            $insert = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
+            $Insert = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
             
             if($$codigoDestinatario == $codigoRemetente){
                 echo "Codigos iguais";
                 return false;
             }
 
-            $cadastro = mysqli_query($con, $insert);
+            $Cadastro = mysqli_query($Conexao, $Insert);
 
-            if ($cadastro) {
+            if ($Cadastro) {
                 echo "texto Enviado com sucesso \n";
                 return true;
             }

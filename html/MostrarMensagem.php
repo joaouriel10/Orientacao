@@ -18,7 +18,7 @@
 
                         $con = new ConectarBancoDados();
 
-                        $conexao = $con->connect();
+                        $conexao = $con::LogarBanco();
 
                         $select = "SELECT codigo FROM usuario";
 

@@ -6,15 +6,15 @@
         
         public function cadastrarUsuario($nome, $codigo)
         {
-            $Conexao = new ConectarBancoDados();
+            $Logar = new ConectarBancoDados();
 
-            $con = $Conexao::connect();
+            $Conexao = $Logar::LogarBanco();
 
-            $insert = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
+            $Insert = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
 
-            $cadastro = mysqli_query($con, $insert);
+            $Cadastro = mysqli_query($Conexao, $Insert);
 
-            if($cadastro){
+            if($Cadastro){
                 echo "Usuario cadastrado \n";
                 return true;
                 
@@ -25,18 +25,18 @@
 
         public function getCodigo()
         {
-            $Conexao = new ConectarBancoDados();
+            $Logar = new ConectarBancoDados();
 
-            $con = $Conexao::connect();
+            $Conexao = $Logar::LogarBanco();
 
-            $select = "SELECT codigo FROM usuario";
+            $Select = "SELECT codigo FROM usuario";
 
-            $resultado = mysqli_query($con, $select);
+            $Resultado = mysqli_query($Conexao, $Select);
 
-            $result = mysqli_fetch_row($resultado);
+            $Result = mysqli_fetch_row($Resultado);
             
-            if($resultado){
-                return $result;
+            if($Resultado){
+                return $Result;
             }else{
                 return false;
             }

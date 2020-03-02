@@ -2,7 +2,7 @@
 
      class ConectarBancoDados{
 
-        public function connect()
+        public function LogarBanco()
         {
             define('HOST', 'localhost');
             define('USER', 'joao');
