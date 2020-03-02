@@ -11,20 +11,15 @@
 
             $insert = "INSERT INTO usuario (nome, codigo) VALUES('$nome','$codigo')";
 
-            foreach(getCodigo() as $codigos){
-                if($codigos == $codigo){
-                    $resposta = "Codigo já cadastrado \n";
-                    return print $resposta;
-                }else{
-                    $cadastro = mysqli_query($con, $insert);
-                    if ($cadastro) {
-                        $resposta = "Usuario cadastrado \n";
-                    }else{
-                        $cadastro = "Erro no banco";
-                        return print $cadastro;
-                    }
-                }   
+            $cadastro = mysqli_query($con, $insert);
+
+            if($cadastro){
+                echo "Usuario cadastrado \n";
+                return true;
+                
             }
+                echo "Usuario já cadastrado \n";
+                return false;
         }
 
         public function getCodigo()

@@ -1,12 +1,28 @@
 <?php
          function connect()
         {
-            define('HOST', 'localhost');
-            define('USER', 'joao');
-            define('PASS', 'Joaouriel10');
-            define('BANCO', 'trabalho');
+            //define('HOST', 'localhost');
+            //define('USER', 'joao');
+            //define('PASS', 'Joaouriel10');
+            //define('BANCO', 'trabalho');
 
-            return mysqli_connect(HOST, USER, PASS, BANCO);
+            return mysqli_connect('localhost', 'joao', 'Joaouriel10', 'trabalho');
+        }
+        function getCodigo()
+        {
+            $con = connect();
+
+            $select = "SELECT codigo FROM usuario LIMIT 10";
+
+            $resultado = mysqli_query($con, $select);
+
+            $result = mysqli_fetch_row($resultado);
+            
+            if($resultado){
+                return print $result;
+            }else{
+                return print -1;
+            }
         }
 
         function cadastrarUsuario($nome, $codigo)
@@ -18,32 +34,15 @@
             $cadastro = mysqli_query($con, $insert);
 
             if($cadastro){
-                foreach(getCodigo() as $codigos){
-                    if($codigos == $codigo){
-                        $resposta = "Codigo já cadastrado \n";
-                        return print $resposta;
-                    }else{
-                        $resposta = "Usuario cadastrado \n";
-                    return print $resposta;
-                    }   
-                }
-            }else{
-                return print "Codigo já cadastrado \n";
-            } 
-        }
-        function getCodigo()
-        {
-            $con = connect();
-
-            $select = "SELECT codigo FROM usuario";
-
-            $resultado = mysqli_query($con, $select);
-
-            $result = mysqli_fetch_row($resultado);
-            
-            if($resultado){
-                return $result;
-            }else{
-                return print -1;
+                echo "Usuario cadastrado \n";
+                return true;
+                
             }
+                echo "Usuario já cadastrado \n";
+                return false;
         }
+        
+
+        //getCodigo();
+
+        cadastrarUsuario('joao uriel', 123);
