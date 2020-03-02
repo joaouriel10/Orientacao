@@ -33,8 +33,8 @@
 //        return $userController->deletarUsuario($id);
 //    }
 
-    $usuario = new Usuario('Joao',11); 
+    $usuario = new Usuario('Patrick',10); 
 
-    $cadastro = new ComandosBanco;
+    $cadastro = new ComandosUsuario;
 
     $cadastro->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo() );

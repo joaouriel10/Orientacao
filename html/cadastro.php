@@ -7,6 +7,10 @@
         <title>Cadastrar Usuario</title>
     </head>
     <body>
+        <?php
+            
+
+        ?>
         <div class="container">
             <form>
                 <div class="form-group">

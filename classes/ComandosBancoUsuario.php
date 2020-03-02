@@ -2,7 +2,7 @@
 
     include_once 'BancoDados.php';
 
-    class ComandosBanco {
+    class ComandosUsuario {
         
         public function cadastrarUsuario($nome, $codigo)
         {

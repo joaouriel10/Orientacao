@@ -1,4 +1,6 @@
 <?php
+
+        
          function connect()
         {
             //define('HOST', 'localhost');
@@ -17,12 +19,13 @@
             $resultado = mysqli_query($con, $select);
 
             $result = mysqli_fetch_row($resultado);
+
+            $result = intval($result);
             
             if($resultado){
                 return print $result;
-            }else{
-                return print -1;
             }
+                return print -1;
         }
 
         function cadastrarUsuario($codigoRemetente, $texto, $codigoDestinatario)
@@ -31,8 +34,8 @@
 
             $insert = "INSERT INTO texto (codigoRemetente, texto, codigo) VALUES('$codigoRemetente','$texto','$codigoDestinatario')";
             
-            if($$codigoDestinatario == $codigoRemetente){
-                echo "Codigos iguais";
+            if($codigoDestinatario == $codigoRemetente){
+                echo "Codigos iguais \n";
                 return false;
             }
 
@@ -46,8 +49,17 @@
             return false;
         }
         
+        function verificador(){
+            if(getCodigo() == null){
+                echo 'cadastro.php';
+            }
+        }
+
 
         //getCodigo();
 
-        cadastrarUsuario(100, 'teste', 100);
+        //cadastrarUsuario(11, 'teste', 100);
         
+        verificador();
+
+        echo "\n";

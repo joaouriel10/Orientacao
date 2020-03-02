@@ -12,11 +12,18 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <?php
+                        include_once '../classes/BancoDados.php';
+                        include_once '../classes/ComandosBancoUsuario.php';
+            
+                        $verificacao = new ComandosUsuario;
+            
+                        $verificacao->getCodigo();
+            
+                        if($verificacao == null){
+                            header('http://localhost/projeto01/Trabalho_Logica/html/cadastro.php');
+                        }
+                    ?>
                     </select>
                 </div>
                 <div class="form-group">
