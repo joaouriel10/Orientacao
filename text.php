@@ -60,6 +60,6 @@
 
         //cadastrarUsuario(11, 'teste', 100);
         
-        verificador();
+        //verificador();
 
         echo "\n";

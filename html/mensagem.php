@@ -18,10 +18,10 @@
             
                         $verificacao = new ComandosUsuario;
             
-                        $verificacao->getCodigo();
-            
-                        if($verificacao == null){
-                            header('http://localhost/projeto01/Trabalho_Logica/html/cadastro.php');
+                        $cod = $verificacao->getCodigo();
+
+                        if(!$cod){
+                            header('Location: http://localhost/projeto01/Trabalho_Logica/html/cadastro.php');
                         }
                     ?>
                     </select>
