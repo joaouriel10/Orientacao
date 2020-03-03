@@ -17,6 +17,10 @@
                 return false;
             }
 
+            if($assunto == "" || $texto == ""){
+                return false;
+            }
+
             $cadastrar = mysqli_query($conexao, $query);
 
             if ($cadastrar) {
@@ -28,65 +32,33 @@
             mysqli_close($conexao);
             return false;
         }
-        public function listarMensagemEnviada($codigoMensagem)
+        public function listarMensagens($codigoMensagem)
         {
             $logar = new ConectarBancoDados();
 
             $conexao = $logar::LogarBanco();
 
-            $query = "SELECT t.Assunto, u.nome, t.texto FROM texto AS t Inner JOIN usuario AS u ON t.codigo = u.codigo where codigoRemetente = $codigoMensagem";
+            $query = "SELECT t.Assunto, u.nome, t.texto FROM texto AS t Inner JOIN usuario AS u ON t.codigo = u.codigo where t.codigoRemetente = $codigoMensagem";
 
             $resultado = mysqli_query($conexao, $query);
 
-            while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+            if($resultado){
+                while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             
-                foreach($array as $nome => $codigos){
-                    echo "$nome => $codigos \n";
+                    foreach($array as $nome => $codigos){
+                        if($nome == "Assunto"){
+                            echo "<table>
+                             <thead> <tr> <td>Assunto: $codigos</td></tr></thead>";
+                        }if($nome == "nome"){
+                            echo"<tbody> <tr> <td>Nome: $codigos </tr> </td>";                        
+                        }if ($nome == "texto") {
+                            echo "<tr> <td> Mensagem: $codigos </tr> </td> </tbody> </table> <br><br>";
+                        }
+                    } 
                 }
-                
+                mysqli_close($conexao);
+                return true;
             }
-            
-            mysqli_close($conexao);
-
-        }
-        public function listarMensagemRecebida($codigoMensagem)
-        {
-            $logar = new ConectarBancoDados();
-
-            $conexao = $logar::LogarBanco();
-
-            $query = "SELECT * FROM texto WHERE  codigo = $codigoMensagem";
-
-            $resultado = mysqli_query($conexao, $query);
-
-            while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-                            
-                foreach($array as $codigos){
-                    $contador = 1;
-                    if($contador == 1){
-                        echo "$codigos - Recebida                       ";
-                    }if($contador == 2){
-                        echo"Recebida por: $codigos \n";
-                    }else{
-                        echo "$codigos";
-                    }
-                    //var_dump($contador);
-                    $contador++;
-                } 
-            }
-            
-            mysqli_close($conexao);
-
+            return false;
         }
     }
-
-    
-  //  <table>
-  //  <tbody>
-  //    <tr>
-  //      <td>test</td>
-  //      <td>test 2</td>
-  //    </tr>
-  //  </tbody>
-  //  
-  //</table>

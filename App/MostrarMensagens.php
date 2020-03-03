@@ -7,7 +7,10 @@
 
     $mensagem = new MensagemController;
 
-    $mensagem->listarMensagemRecebida($codUsuario);
-    die();
+    $mensagem->listarMensagens($codUsuario);
+
+    
+    
+
 
     
