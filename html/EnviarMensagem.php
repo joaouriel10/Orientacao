@@ -20,7 +20,8 @@
             }
         ?>
         <div class="container">
-            <form method="post" action="../App/CadastrarMensagem.php">
+            <!-- <form method="post" action="../App/CadastrarMensagem.php"> -->
+            <form method="post" action="../App/foaas.php">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="codigo_remetente">
@@ -34,7 +35,7 @@
 
                         $query = "SELECT codigo FROM usuario";
 
-                        $resultado = mysqli_query ($conexao, $query);
+                        $resultado = mysqli_query($conexao, $query);
                         
                         while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             
