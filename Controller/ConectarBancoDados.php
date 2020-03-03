@@ -4,6 +4,7 @@
 
         public function LogarBanco()
         {
+            //DEFININDO CONSTANTES
             define('HOST', 'localhost');
             define('USER', 'joao');
             define('PASS', 'Joaouriel10');

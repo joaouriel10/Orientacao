@@ -28,25 +28,25 @@
                         include_once '../Controller/ConectarBancoDados.php';
                         include_once '../Controller/UsuarioController.php';
 
-                        $Logar = new ConectarBancoDados();
+                        $logar = new ConectarBancoDados();
 
-                        $Conexao = $Logar->LogarBanco();
+                        $conexao = $logar->LogarBanco();
 
-                        $Select = "SELECT codigo FROM usuario";
+                        $query = "SELECT codigo FROM usuario";
 
-                        $Resultado = mysqli_query ($Conexao, $Select);
+                        $resultado = mysqli_query ($conexao, $query);
                         
-                        while($dress1=mysqli_fetch_array($Resultado, MYSQLI_ASSOC)){
+                        while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             
-                            foreach($dress1 as $Codigos){
-                                echo "<option value=$Codigos>";
-                                echo "$Codigos";
+                            foreach($array as $codigos){
+                                echo "<option value=$codigos>";
+                                echo "$codigos";
                                 "</option>";
                             } 
                             
                         }
 
-                        mysqli_close($Conexao);
+                        mysqli_close($conexao);
 
                     ?>
                     </select>
@@ -58,17 +58,17 @@
                         include_once '../Controller/ConectarBancoDados.php';
                         include_once '../Controller/UsuarioController.php';
 
-                        $Logar = new ConectarBancoDados();
+                        $logar = new ConectarBancoDados();
 
-                        $Conexao = $Logar::LogarBanco();
+                        $conexao = $logar::LogarBanco();
 
-                        $Select = "SELECT codigo FROM usuario";
+                        $query = "SELECT codigo FROM usuario";
 
-                        $Resultado = mysqli_query ($Conexao, $Select);
+                        $resultado = mysqli_query ($conexao, $query);
                         
-                        while($dress1=mysqli_fetch_array($Resultado, MYSQLI_ASSOC)){
+                        while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             
-                            foreach($dress1 as $codigos){
+                            foreach($array as $codigos){
                                 echo "<option value=$codigos>";
                                 echo "$codigos";
                                 "</option>";
@@ -76,10 +76,14 @@
                             
                         }
 
-                        mysqli_close($Conexao);
+                        mysqli_close($conexao);
 
                     ?>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Assunto</label>
+                    <input type="text" class="form-control" name="assunto" id="formGroupExampleInput" placeholder="Assunto">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mensagem</label>

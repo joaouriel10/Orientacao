@@ -8,21 +8,21 @@
     </head>
     <body>
         <div class="container">
-            <form method="post" action="../App/CadastrarMensagem.php">
+            <form method="post" action="../App/MostrarMensagens.php">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="codigo_remetente">
+                    <select class="form-control" id="exampleFormControlSelect1" name="codigoEscolhido">
                     <?php
-                        include_once '../classes/BancoDados.php';
-                        include_once '../classes/ComandosBancoUsuario.php';
+                        include_once '../Controller/ConectarBancoDados.php';
+                        include_once '../Model/UsuarioController.php';
 
                         $con = new ConectarBancoDados();
 
                         $conexao = $con::LogarBanco();
 
-                        $select = "SELECT codigo FROM usuario";
+                        $query = "SELECT codigo FROM usuario";
 
-                        $result = mysqli_query ($conexao, $select);
+                        $result = mysqli_query ($conexao, $query);
                         
                         while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
                             

@@ -5,6 +5,7 @@
         var $Texto;
         var $codigoRemetente;
         var $codigoDestinatario;
+        var $Assunto;
 
         public function setTexto($texto)
         {
@@ -18,6 +19,10 @@
         {
             $this->codigoDestinatario = $codigoDestinatario;
         }
+        public function setAssunto($assunto)
+        {
+            $this->Assunto = $assunto;
+        }
          public function getTexto()
         {
             return $this->Texto;
@@ -29,6 +34,10 @@
         public function getCodDestinatario()
         {
             return $this->codigoDestinatario;
+        }
+        public function getAssunto()
+        {
+            return $this->Assunto;
         }
 
 
