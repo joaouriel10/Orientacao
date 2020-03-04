@@ -6,17 +6,17 @@
         {
             if($codigoUm == $codigoDois){
                 echo "Codigos iguais";
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
         
         public function compoNulo($assunto, $texto)
         {
             if($assunto == "" || $texto == ""){
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         public function validarCadastro($conexao, $query)

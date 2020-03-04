@@ -14,17 +14,17 @@
 
             $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
             
-            $codigosIguais = $validacao->codigosIguais($codigoRemetente, $codigoRemetente);
+            $codigosIguais = $validacao->codigosIguais($codigoRemetente, $codigoDestinatario);
 
             $assuntoNulo = $validacao->compoNulo($assunto, $texto);
-
-            if($codigosIguais && $assuntoNulo){
+            
+            if(!$codigosIguais && !$assuntoNulo){
                 return false;
             }
 
             $cadastrar = $validacao->validarCadastro($conexao, $query);
 
-            if ($cadastrar) {
+            if (!$cadastrar) {
                 return true;
             }
             return false;
@@ -59,3 +59,13 @@
             return false;
         }
     }
+
+    $teste = new MensagemController;
+
+    $codigoRemetente = 2;
+    $texto = "teste";
+    $codigoDestinatario = 123;
+    $assunto = "testeAssunto";
+
+
+    $teste->cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto);
