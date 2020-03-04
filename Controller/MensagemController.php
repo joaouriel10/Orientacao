@@ -1,35 +1,32 @@
 <?php
 
     include_once 'ConectarBancoDados.php';
+    include_once '../Validacao/Validacoes.php';
 
     class MensagemController
     {
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto)
         {
             $logar = new ConectarBancoDados();
+            $validacao = new Validacoes();
 
             $conexao = $logar::LogarBanco();
 
             $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
             
-            if($$codigoDestinatario == $codigoRemetente){
-                echo "Codigos iguais";
+            $codigosIguais = $validacao->codigosIguais($codigoRemetente, $codigoRemetente);
+
+            $assuntoNulo = $validacao->compoNulo($assunto, $texto);
+
+            if($codigosIguais && $assuntoNulo){
                 return false;
             }
 
-            if($assunto == "" || $texto == ""){
-                return false;
-            }
-
-            $cadastrar = mysqli_query($conexao, $query);
+            $cadastrar = $validacao->validarCadastro($conexao, $query);
 
             if ($cadastrar) {
-                echo "texto Enviado com sucesso \n";
-                mysqli_close($conexao);
                 return true;
             }
-            echo "Falha ao enviar mensagem \n";
-            mysqli_close($conexao);
             return false;
         }
         public function listarMensagens($codigoMensagem)

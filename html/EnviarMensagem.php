@@ -21,7 +21,7 @@
         ?>
         <div class="container">
             <!-- <form method="post" action="../App/CadastrarMensagem.php"> -->
-            <form method="post" action="../App/foaas.php">
+            <form method="post" action="../App/CadastrarMensagem.php">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="codigo_remetente">
