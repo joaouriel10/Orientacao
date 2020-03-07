@@ -1,33 +1,25 @@
 <?php
 
-    include_once 'ConectarBancoDados.php';
-    include_once '../Validacao/Validacoes.php';
+    include_once '../Repository/ConectarBancoDados.php';
+    include_once '../Service/UsuarioServices.php';
 
     class MensagemController
     {
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto)
         {
             $logar = new ConectarBancoDados();
-            $validacao = new Validacoes();
+            $validacao = new MensagemService();
 
             $conexao = $logar::LogarBanco();
 
             $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
             
-            $codigosIguais = $validacao->codigosIguais($codigoRemetente, $codigoDestinatario);
+            $validacao->codigosIguais($codigoRemetente, $codigoDestinatario);
 
-            $assuntoNulo = $validacao->compoNulo($assunto, $texto);
-            
-            if(!$codigosIguais && !$assuntoNulo){
-                return false;
-            }
+            $validacao->compoNulo($assunto, $texto);
 
-            $cadastrar = $validacao->validarCadastro($conexao, $query);
+            $validacao->validarCadastro($conexao, $query);
 
-            if (!$cadastrar) {
-                return true;
-            }
-            return false;
         }
         public function listarMensagens($codigoMensagem)
         {
@@ -59,13 +51,3 @@
             return false;
         }
     }
-
-    $teste = new MensagemController;
-
-    $codigoRemetente = 2;
-    $texto = "teste";
-    $codigoDestinatario = 123;
-    $assunto = "testeAssunto";
-
-
-    $teste->cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto);

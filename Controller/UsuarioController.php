@@ -1,6 +1,7 @@
 <?php
 
-    include_once 'ConectarBancoDados.php';
+    include_once '../Repository/ConectarBancoDados.php';
+    include_once '../Service/MensagemService.php';
 
     class UsuarioController 
     {
@@ -8,27 +9,22 @@
         public function cadastrarUsuario($nome, $codigo)
         {
             $logar = new ConectarBancoDados();
+            
+            $validacao = new MensagemService();
 
-            $conexao = $logar::LogarBanco();
+            $conexao = $logar->LogarBanco();
 
             $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
 
-            $cadastro = mysqli_query($conexao, $query);
+            $validacao->validarCadastro($conexao,$query);
 
-            if($cadastro){
-                echo "Usuario cadastrado \n";
-                return true;
-                
-            }
-                echo "Usuario já cadastrado \n";
-                return false;
         }
 
         public function getCodigo()
         {
             $logar = new ConectarBancoDados();
 
-            $conexao = $logar::LogarBanco();
+            $conexao = $logar->LogarBanco();
 
             $query = "SELECT codigo FROM usuario";
 

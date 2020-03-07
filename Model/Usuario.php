@@ -2,8 +2,8 @@
 
      class Usuario{
 
-        private $Nome;
-        private $Codigo;
+        protected $Nome;
+        protected $Codigo;
 
         public function setNome($nome)
         {

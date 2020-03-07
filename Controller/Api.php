@@ -38,7 +38,3 @@
 
     }
     ?>
-
-    <?php
-    $teste = new Api;
-    $teste->response(2,1);

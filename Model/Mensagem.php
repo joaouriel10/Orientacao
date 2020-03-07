@@ -2,10 +2,10 @@
 
     class Mensagem{
 
-        var $Texto;
-        var $codigoRemetente;
-        var $codigoDestinatario;
-        var $Assunto;
+        protected $Texto;
+        protected $codigoRemetente;
+        protected $codigoDestinatario;
+        protected $Assunto;
 
         public function setTexto($texto)
         {

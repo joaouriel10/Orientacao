@@ -1,16 +1,17 @@
 <?php
 
-    class Validacoes{
+    include_once '../Service/MensagemServices.php';
 
+    class MensagemService
+    {
         public function codigosIguais($codigoUm, $codigoDois)
         {
             if($codigoUm == $codigoDois){
                 echo "Codigos iguais";
-                return false;
+                return header("Location: ");
             }
             return true;
         }
-        
         public function compoNulo($assunto, $texto)
         {
             if($assunto == "" || $texto == ""){
@@ -24,13 +25,10 @@
             $cadastrar = mysqli_query($conexao, $query);
 
             if ($cadastrar) {
-                echo "texto Enviado com sucesso \n";
-                mysqli_close($conexao);
-                return true;
+                return header('Location: ../html/EnviarMensagem.php');;
             }
             echo "Falha ao enviar mensagem \n";
             mysqli_close($conexao);
-            return false;
+            return header('Location: ../html/index.html');
         }
-
     }
