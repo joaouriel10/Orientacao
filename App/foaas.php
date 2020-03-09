@@ -27,7 +27,7 @@
 
     //VALIDAR SE FOI CADASTRADO
     if($cadastrado){
-        header('Location: ../html/EnviarMensagem.php');
+        header('Location: ../View/EnviarMensagem.php');
     }else{
-        header('Location: ../html/index.html');
+        header('Location: ../View/index.html');
     }

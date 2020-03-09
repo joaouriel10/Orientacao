@@ -16,7 +16,7 @@
             $cod = $verificacao->getCodigo();
 
             if(!$cod){
-                header('Location: http://localhost/projeto01/Trabalho_Logica/html/CadastroUsuario.php');
+                header('Location: http://localhost/projeto01/Trabalho_Logica/View/CadastroUsuario.php');
             }
         ?>
         <div class="container">

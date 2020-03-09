@@ -8,7 +8,7 @@
         {
             if($codigoUm == $codigoDois){
                 echo "Codigos iguais";
-                return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
+                return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
                 die;
             }
             return true;
@@ -16,7 +16,7 @@
         public function compoNulo($assunto, $texto)
         {
             if($assunto == "" || $texto == ""){
-                return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
+                return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
                 die;
             }
             return true;
@@ -28,15 +28,15 @@
 
             if ($cadastrar) {
                 if ($opcao == "MENSAGEM") {
-                    return header('Location: http://localhost/projeto01/Trabalho_Logica/html/EnviarMensagem.php');
+                    return header('Location: http://localhost/projeto01/Trabalho_Logica/View/EnviarMensagem.php');
                     die;
                 }
-                return header('Location: http://localhost/projeto01/Trabalho_Logica/html/CadastroUsuario.php');
+                return header('Location: http://localhost/projeto01/Trabalho_Logica/View/CadastroUsuario.php');
                 die;
             }
             echo "Falha ao enviar mensagem \n";
             mysqli_close($conexao);
-            return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
+            return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
         }
         
     }
