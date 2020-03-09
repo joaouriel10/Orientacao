@@ -11,10 +11,3 @@
     $cadastro = new UsuarioController;
     $cadastrado = $cadastro->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo());
 
-    if($cadastrado){
-        header('Location: ../html/CadastroUsuario.php');
-    }else{
-        header('Location: ../html/index.html');
-    }
-    
-

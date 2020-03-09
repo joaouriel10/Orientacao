@@ -3,8 +3,8 @@
     class Mensagem{
 
         protected $Texto;
-        protected $codigoRemetente;
-        protected $codigoDestinatario;
+        protected $CodigoRemetente;
+        protected $CodigoDestinatario;
         protected $Assunto;
 
         public function setTexto($texto)
@@ -13,11 +13,11 @@
         }
         public function setCodigoRemetente($codigoRemetente)
         {
-            $this->codigoRemetente = $codigoRemetente;
+            $this->CodigoRemetente = $codigoRemetente;
         }
         public function setCodigoDestinatario($codigoDestinatario)
         {
-            $this->codigoDestinatario = $codigoDestinatario;
+            $this->CodigoDestinatario = $codigoDestinatario;
         }
         public function setAssunto($assunto)
         {
@@ -29,11 +29,11 @@
         }
         public function getCodRemetente()
         {
-            return $this->codigoRemetente;
+            return $this->CodigoRemetente;
         }
         public function getCodDestinatario()
         {
-            return $this->codigoDestinatario;
+            return $this->CodigoDestinatario;
         }
         public function getAssunto()
         {

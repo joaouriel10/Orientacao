@@ -16,7 +16,9 @@
 
             $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
 
-            $validacao->validarCadastro($conexao,$query);
+            $opcao = "USUARIO";
+
+            $validacao->validarCadastro($conexao, $query, $opcao);
 
         }
 
@@ -30,10 +32,10 @@
 
             $resultado = mysqli_query($conexao, $query);
 
-            $Result = mysqli_fetch_row($resultado);
+            $result = mysqli_fetch_row($resultado);
             
             if($resultado){
-                return $Result;
+                return $result;
             }else{
                 return false;
             }

@@ -18,7 +18,9 @@
 
             $validacao->compoNulo($assunto, $texto);
 
-            $validacao->validarCadastro($conexao, $query);
+            $opcao = "MENSAGEM";
+
+            $validacao->validarCadastro($conexao, $query, $opcao);
 
         }
         public function listarMensagens($codigoMensagem)
