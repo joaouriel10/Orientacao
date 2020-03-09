@@ -10,7 +10,7 @@
         {
             $logar = new ConectarBancoDados();
             
-            $validacao = new MensagemService();
+            $validacao = new Service();
 
             $conexao = $logar->LogarBanco();
 

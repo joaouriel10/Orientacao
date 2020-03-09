@@ -2,20 +2,22 @@
 
     include_once '../Service/MensagemServices.php';
 
-    class MensagemService
+    class Service
     {
         public function codigosIguais($codigoUm, $codigoDois)
         {
             if($codigoUm == $codigoDois){
                 echo "Codigos iguais";
-                return header("Location: ");
+                return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
+                die;
             }
             return true;
         }
         public function compoNulo($assunto, $texto)
         {
             if($assunto == "" || $texto == ""){
-                return false;
+                return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
+                die;
             }
             return true;
         }
@@ -34,7 +36,7 @@
             }
             echo "Falha ao enviar mensagem \n";
             mysqli_close($conexao);
-            return header('Location: ../html/index.html');
+            return header('Location: http://localhost/projeto01/Trabalho_Logica/html/index.html');
         }
         
     }

@@ -8,7 +8,7 @@
         public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto)
         {
             $logar = new ConectarBancoDados();
-            $validacao = new MensagemService();
+            $validacao = new Service();
 
             $conexao = $logar::LogarBanco();
 
