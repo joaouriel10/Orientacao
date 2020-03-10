@@ -1,55 +1,30 @@
 <?php
 
-    include_once '../Repository/ConectarBancoDados.php';
-    include_once '../Service/UsuarioServices.php';
+    include_once '../Service/MensagemService.php';
+    include_once '../Repository/MensagemRepository.php';
 
     class MensagemController
     {
-        public function cadastrarMensagem($codigoRemetente, $texto, $codigoDestinatario, $assunto)
-        {
-            $logar = new ConectarBancoDados();
-            $validacao = new Service();
+            public function Mensagem($texto, $codigoRemetente, $codigoDestinatario, $assunto)
+            {
 
-            $conexao = $logar::LogarBanco();
+                $mensagem = new Mensagem;
 
-            $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
+                $mensagem->setTexto($texto);
+                $mensagem->setCodigoRemetente($codigoRemetente);
+                $mensagem->setCodigoDestinatario($codigoDestinatario);
+                $mensagem->setAssunto($assunto);
             
-            $validacao->codigosIguais($codigoRemetente, $codigoDestinatario);
-
-            $validacao->compoNulo($assunto, $texto);
-
-            $opcao = "MENSAGEM";
-
-            $validacao->validarCadastro($conexao, $query, $opcao);
-
-        }
-        public function listarMensagens($codigoMensagem)
-        {
-            $logar = new ConectarBancoDados();
-
-            $conexao = $logar::LogarBanco();
-
-            $query = "SELECT t.Assunto, u.nome, t.texto FROM texto AS t Inner JOIN usuario AS u ON t.codigo = u.codigo where t.codigoRemetente = $codigoMensagem";
-
-            $resultado = mysqli_query($conexao, $query);
-
-            if($resultado){
-                while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-                            
-                    foreach($array as $nome => $codigos){
-                        if($nome == "Assunto"){
-                            echo "<table>
-                             <thead> <tr> <td>Assunto: $codigos</td></tr></thead>";
-                        }if($nome == "nome"){
-                            echo"<tbody> <tr> <td>Nome: $codigos </tr> </td>";                        
-                        }if ($nome == "texto") {
-                            echo "<tr> <td> Mensagem: $codigos </tr> </td> </tbody> </table> <br><br>";
-                        }
-                    } 
+                //INSERIR NO BANCO
+                $enviarMensagem = new MensagemRepository();
+            
+                //VALIDAR SE FOI CADASTRADO
+                if($enviarMensagem->cadastrarMensagem($mensagem->getCodRemetente(), $mensagem->getTexto(), $mensagem->getCodDestinatario(),$mensagem->getAssunto())){
+                    header('Location: ../View/EnviarMensagem.php');
+                    die();
+                }else{
+                    header('Location: ../View/index.html');
+                    die();
                 }
-                mysqli_close($conexao);
-                return true;
             }
-            return false;
-        }
-    }
+    }   

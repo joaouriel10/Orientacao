@@ -1,44 +1,47 @@
 <?php
 
-    include_once '../Repository/ConectarBancoDados.php';
-    include_once '../Service/MensagemService.php';
+    include_once '../Model/Usuario.php';
+    include_once '../Service/UsuarioService.php';
 
-    class UsuarioController 
+
+    class UsuarioController
     {
         
-        public function cadastrarUsuario($nome, $codigo)
+        public function Usuario($nome, $codigo)
         {
-            $logar = new ConectarBancoDados();
-            
-            $validacao = new Service();
+            $usuario = new Usuario; 
+            $usuario->setNome($nome);
+            $usuario->setCodigo($codigo);
 
-            $conexao = $logar->LogarBanco();
+            $cadastro = new UsuarioService;
 
-            $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
-
-            $opcao = "USUARIO";
-
-            $validacao->validarCadastro($conexao, $query, $opcao);
-
-        }
-
-        public function getCodigo()
-        {
-            $logar = new ConectarBancoDados();
-
-            $conexao = $logar->LogarBanco();
-
-            $query = "SELECT codigo FROM usuario";
-
-            $resultado = mysqli_query($conexao, $query);
-
-            $result = mysqli_fetch_row($resultado);
-            
-            if($resultado){
-                return $result;
+            if($cadastro->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo())){
+                header('Location: ../View/CadastroUsuario.php');
+                die();
             }else{
-                return false;
+                header('Location: ../View/index.html');
+                die();
             }
+
         }
+
+        // public function getCodigo()
+        // {
+        //     $logar = new ConectarBancoDados();
+
+        //     $conexao = $logar->LogarBanco();
+
+        //     $query = "SELECT codigo FROM usuario";
+
+        //     $resultado = mysqli_query($conexao, $query);
+
+        //     $result = mysqli_fetch_row($resultado);
+            
+        //     if($resultado){
+        //         return $result;
+        //     }else{
+        //         return false;
+        //     }
+        // }
 
     }

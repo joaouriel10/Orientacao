@@ -2,7 +2,7 @@
 
     include_once '../Service/MensagemServices.php';
 
-    class Service
+    class MensagemService
     {
         public function codigosIguais($codigoUm, $codigoDois)
         {
@@ -22,21 +22,21 @@
             return true;
         }
 
-        public function validarCadastro($conexao, $query, $opcao)
+        public function validarCadastro($codigoRemetente, $texto, $codigoDestinatario, $assunto)
         {
-            $cadastrar = mysqli_query($conexao, $query);
+
+            $bancoDados = new ConectarBancoDados;
+
+            $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
+
+            $cadastrar = mysqli_query($bancoDados->LogarBanco(), $query);
 
             if ($cadastrar) {
-                if ($opcao == "MENSAGEM") {
-                    return header('Location: http://localhost/projeto01/Trabalho_Logica/View/EnviarMensagem.php');
-                    die;
-                }
-                return header('Location: http://localhost/projeto01/Trabalho_Logica/View/CadastroUsuario.php');
-                die;
+                    return true;
             }
             echo "Falha ao enviar mensagem \n";
-            mysqli_close($conexao);
-            return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
+            mysqli_close($bancoDados->LogarBanco());
+            return false;
         }
         
     }

@@ -11,7 +11,7 @@
             include_once '../Controller/ConectarBancoDados.php';
             include_once '../Controller/UsuarioController.php';
 
-            $verificacao = new UsuarioController;
+            $verificacao = new UsuarioController();
 
             $cod = $verificacao->getCodigo();
 
@@ -20,7 +20,6 @@
             }
         ?>
         <div class="container">
-            <!-- <form method="post" action="../App/CadastrarMensagem.php"> -->
             <form method="post" action="../App/CadastrarMensagem.php">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
