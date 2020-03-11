@@ -1,23 +1,15 @@
 <?php
 
-    include_once '../Repository/ConectarBancoDados.php';
-
     class UsuarioService
     {
-        public function cadastrarUsuario($nome, $codigo)
+        public function validarCadastroUsuario($codigo, $cadastrarUsuario)
         {
-            $bancoDados = new ConectarBancoDados();
 
-            $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
-
-            $cadastrar = mysqli_query($bancoDados->LogarBanco(), $query);
-
-            if ($cadastrar) {
+            while($result = mysqli_fetch_array($cadastrarUsuario, MYSQLI_ASSOC)){
+                if ($result["codigo"] == $codigo) {
+                    return false;
+                }
                 return true;
             }
-            echo "Falha ao cadastrar \n";
-            mysqli_close($bancoDados->LogarBanco());
-            return false;
-
         }
     }

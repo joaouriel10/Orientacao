@@ -10,6 +10,7 @@
 
                 $mensagem = new Mensagem;
 
+                //ENCAPSULAMENTO
                 $mensagem->setTexto($texto);
                 $mensagem->setCodigoRemetente($codigoRemetente);
                 $mensagem->setCodigoDestinatario($codigoDestinatario);
@@ -17,14 +18,23 @@
             
                 //INSERIR NO BANCO
                 $enviarMensagem = new MensagemRepository();
+
+                $resultado = $enviarMensagem->cadastrarMensagem($mensagem->getCodRemetente(), $mensagem->getTexto(), $mensagem->getCodDestinatario(),$mensagem->getAssunto());
             
                 //VALIDAR SE FOI CADASTRADO
-                if($enviarMensagem->cadastrarMensagem($mensagem->getCodRemetente(), $mensagem->getTexto(), $mensagem->getCodDestinatario(),$mensagem->getAssunto())){
+                if($resultado){
                     header('Location: ../View/EnviarMensagem.php');
-                    die();
+                    exit;
                 }else{
                     header('Location: ../View/index.html');
-                    die();
+                    exit;
                 }
             }
+            public function listarMensagens($codigoMensagem)
+            {
+                $listarMensagem = new MensagemRepository();
+
+                $listarMensagem->listarMensagens($codigoMensagem);
+            }
+            
     }   

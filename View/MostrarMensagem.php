@@ -13,29 +13,24 @@
                     <label for="exampleFormControlSelect1">Codigo Usuario Remetente</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="codigoEscolhido">
                     <?php
-                        include_once '../Controller/ConectarBancoDados.php';
-                        include_once '../Model/UsuarioController.php';
+                        include_once '../Repository/ConectarBancoDados.php';
 
                         $con = new ConectarBancoDados();
 
-                        $conexao = $con::LogarBanco();
+                        $conexao = $con->LogarBanco();
 
                         $query = "SELECT codigo FROM usuario";
 
                         $result = mysqli_query ($conexao, $query);
                         
-                        while($dress1=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                        while($array=mysqli_fetch_array($result, MYSQLI_ASSOC)){
                             
-                            foreach($dress1 as $codigos){
+                            foreach($array as $codigos){
                                 echo "<option value=$codigos>";
-                                echo "$codigos";
-                                "</option>";
+                                echo "$codigos </option>";
                             } 
                             
                         }
-
-                        mysqli_close($conexao);
-
                     ?>
                     </select>
                     <br>

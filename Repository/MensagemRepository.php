@@ -9,40 +9,47 @@
 
             $validacaoCadastroMensagem = new MensagemService();
             
+            $bancoDados = new ConectarBancoDados();
+
             $validacaoCadastroMensagem->codigosIguais($codigoRemetente, $codigoDestinatario);
     
             $validacaoCadastroMensagem->compoNulo($assunto, $texto);
     
-            $validacaoCadastroMensagem->validarCadastro($codigoRemetente, $texto, $codigoDestinatario, $assunto);
+            $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
+
+            $cadastrar = mysqli_query($bancoDados->LogarBanco(), $query);
+
+            if ($cadastrar) {
+                    return true;
+            }
+            echo "Falha ao enviar mensagem \n";
+
+            return false;
+
+            mysqli_close($bancoDados->LogarBanco());
     
         }
         public function listarMensagens($codigoMensagem)
         {
-            $logar = new ConectarBancoDados();
+            $bancoDados = new ConectarBancoDados();
+
+            $mensagemService = new MensagemService();
     
-            $conexao = $logar::LogarBanco();
+            $conexao = $bancoDados->LogarBanco();
     
             $query = "SELECT t.Assunto, u.nome, t.texto FROM texto AS t Inner JOIN usuario AS u ON t.codigo = u.codigo where t.codigoRemetente = $codigoMensagem";
     
             $resultado = mysqli_query($conexao, $query);
     
             if($resultado){
-                while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-                            
-                    foreach($array as $nome => $codigos){
-                        if($nome == "Assunto"){
-                            echo "<table>
-                             <thead> <tr> <td>Assunto: $codigos</td></tr></thead>";
-                        }if($nome == "nome"){
-                            echo"<tbody> <tr> <td>Nome: $codigos </tr> </td>";                        
-                        }if ($nome == "texto") {
-                            echo "<tr> <td> Mensagem: $codigos </tr> </td> </tbody> </table> <br><br>";
-                        }
-                    } 
-                }
-                mysqli_close($conexao);
+
+                $mensagemService->mostrarMensagem($resultado);
+                
+                mysqli_close($bancoDados);
                 return true;
+
             }
+            mysqli_close($bancoDados);
             return false;
         }
     }

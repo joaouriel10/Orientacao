@@ -13,7 +13,7 @@
 
             $verificacao = new UsuarioController();
 
-            $cod = $verificacao->getCodigo();
+            $cod = $verificacao->listarCodigos();
 
             if(!$cod){
                 header('Location: http://localhost/projeto01/Trabalho_Logica/View/CadastroUsuario.php');
@@ -45,9 +45,6 @@
                             } 
                             
                         }
-
-                        mysqli_close($conexao);
-
                     ?>
                     </select>
                 </div>
@@ -60,7 +57,7 @@
 
                         $logar = new ConectarBancoDados();
 
-                        $conexao = $logar::LogarBanco();
+                        $conexao = $logar->LogarBanco();
 
                         $query = "SELECT codigo FROM usuario";
 
@@ -73,11 +70,7 @@
                                 echo "$codigos";
                                 "</option>";
                             } 
-                            
                         }
-
-                        mysqli_close($conexao);
-
                     ?>
                     </select>
                 </div>
@@ -87,7 +80,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mensagem</label>
-                    <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3" placeholder="Mensagem"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                 <a href="index.html" type="submit" class="btn btn-primary" role="button" aria-pressed="true">Voltar</a>

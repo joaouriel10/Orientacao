@@ -1,5 +1,6 @@
 <?php
 
+    include_once '../Repository/UsuarioRepository.php';
     include_once '../Model/Usuario.php';
     include_once '../Service/UsuarioService.php';
 
@@ -9,39 +10,37 @@
         
         public function Usuario($nome, $codigo)
         {
-            $usuario = new Usuario; 
+            //ENCAPSULAMENTO
+            $usuario = new Usuario(); 
             $usuario->setNome($nome);
             $usuario->setCodigo($codigo);
 
-            $cadastro = new UsuarioService;
+            //Cadastrando no Banco
+            $cadastrarUsuario = new UsuarioRepository;
 
-            if($cadastro->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo())){
+            //Validando Cadastro
+            if($cadastrarUsuario->cadastrarUsuario($usuario->getNome(), $usuario->getCodigo())){
                 header('Location: ../View/CadastroUsuario.php');
-                die();
+                exit;
             }else{
                 header('Location: ../View/index.html');
-                die();
+                exit;
             }
 
         }
 
-        // public function getCodigo()
-        // {
-        //     $logar = new ConectarBancoDados();
+        public function listarCodigos()
+        {
 
-        //     $conexao = $logar->LogarBanco();
+            $CodigoUsuario = new UsuarioRepository;
 
-        //     $query = "SELECT codigo FROM usuario";
-
-        //     $resultado = mysqli_query($conexao, $query);
-
-        //     $result = mysqli_fetch_row($resultado);
+            $resultado = $CodigoUsuario->validarCodigo();
             
-        //     if($resultado){
-        //         return $result;
-        //     }else{
-        //         return false;
-        //     }
-        // }
+            if($resultado){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     }

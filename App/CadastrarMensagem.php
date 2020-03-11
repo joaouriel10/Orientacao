@@ -8,4 +8,4 @@
 
     $mensagens = new MensagemController();
 
-    $mensagens->Mensagem($_POST['codigo_remetente'], $_POST['codigo_destinatario'], $assunto = $_POST['assunto'], $_POST ['texto']);
+    $mensagens->Mensagem($_POST ['texto'], $_POST['codigo_remetente'], $_POST['codigo_destinatario'], $assunto = $_POST['assunto']);

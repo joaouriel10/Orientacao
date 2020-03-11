@@ -8,35 +8,37 @@
         {
             if($codigoUm == $codigoDois){
                 echo "Codigos iguais";
+                exit;
                 return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
-                die;
+                exit;
             }
             return true;
         }
         public function compoNulo($assunto, $texto)
         {
             if($assunto == "" || $texto == ""){
+                echo "Campo Nulo";
+                exit;
                 return header('Location: http://localhost/projeto01/Trabalho_Logica/View/index.html');
-                die;
+                exit;
             }
             return true;
         }
-
-        public function validarCadastro($codigoRemetente, $texto, $codigoDestinatario, $assunto)
+        public function mostrarMensagem($resultado)
         {
-
-            $bancoDados = new ConectarBancoDados;
-
-            $query = "INSERT INTO texto (codigoRemetente, texto, codigo, Assunto) VALUES('$codigoRemetente','$texto','$codigoDestinatario','$assunto')";
-
-            $cadastrar = mysqli_query($bancoDados->LogarBanco(), $query);
-
-            if ($cadastrar) {
-                    return true;
+            while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+                            
+                foreach($array as $nome => $codigos){
+                    if($nome == "Assunto"){
+                        echo "<table>
+                         <thead> <tr> <td>Assunto: $codigos</td></tr></thead>";
+                    }if($nome == "nome"){
+                        echo"<tbody> <tr> <td>Nome: $codigos </tr> </td>";                        
+                    }if ($nome == "texto") {
+                        echo "<tr> <td> Mensagem: $codigos </tr> </td> </tbody> </table> <br><br>";
+                    }
+                } 
             }
-            echo "Falha ao enviar mensagem \n";
-            mysqli_close($bancoDados->LogarBanco());
-            return false;
         }
         
     }

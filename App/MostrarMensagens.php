@@ -8,9 +8,3 @@
     $mensagem = new MensagemController;
 
     $mensagem->listarMensagens($codUsuario);
-
-    
-    
-
-
-    
