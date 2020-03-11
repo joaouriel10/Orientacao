@@ -2,7 +2,7 @@
 
     include_once '../Controller/UsuarioController.php';
 
-    $cadastro = new UsuarioController;
+    $cadastrarUsuario = new UsuarioController;
     
-    $cadastrado = $cadastro->Usuario($_POST['nome'], $_POST['codigo']);
+    $cadastrar = $cadastrarUsuario->Usuario($_POST['nome'], $_POST['codigo']);
 

@@ -6,6 +6,6 @@
 
     //POST
 
-    $mensagens = new MensagemController();
+    $enviarMensagem = new MensagemController();
 
-    $mensagens->Mensagem($_POST ['texto'], $_POST['codigo_remetente'], $_POST['codigo_destinatario'], $assunto = $_POST['assunto']);
+    $enviarMensagem->Mensagem($_POST ['texto'], $_POST['codigo_remetente'], $_POST['codigo_destinatario'],$_POST['assunto']);

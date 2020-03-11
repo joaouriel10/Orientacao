@@ -26,7 +26,7 @@
         }
         public function mostrarMensagem($resultado)
         {
-            while($array=mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+            while($array = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
                             
                 foreach($array as $nome => $codigos){
                     if($nome == "Assunto"){

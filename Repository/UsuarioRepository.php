@@ -35,9 +35,9 @@
 
             $query = "SELECT codigo FROM usuario";
 
-            $resultado = mysqli_query($conexao, $query);
+            $resultadoQuery = mysqli_query($conexao, $query);
             
-            if($resultado){
+            if($resultadoQuery){
                 return true;
             }else{
                 return false;
@@ -51,11 +51,11 @@
 
             $query = "SELECT codigo FROM usuario";
 
-            $resultado = mysqli_query($conexao, $query);
+            $resultadoQuery = mysqli_query($conexao, $query);
 
-            $result = mysqli_fetch_object($resultado);
+            $result = mysqli_fetch_object($resultadoQuery);
 
-            if ($resultado) {
+            if ($resultadoQuery) {
                 return $result;
             }else{
                 return false;

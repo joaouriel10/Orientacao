@@ -5,6 +5,6 @@
 
     $codUsuario = $_POST['codigoEscolhido'];
 
-    $mensagem = new MensagemController;
+    $mostrarMensagem = new MensagemController;
 
-    $mensagem->listarMensagens($codUsuario);
+    $mostrarMensagem->listarMensagens($codUsuario);
