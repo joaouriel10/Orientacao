@@ -1,64 +1,25 @@
 <?php
 
-    include_once '../Repository/ConectarBancoDados.php';
-    include_once '../Service/UsuarioService.php';
+require '../Repository/ConectarBancoDados.php';
 
-    class UsuarioRepository
+class UsuarioRepository
+{
+
+    public function cadastrarUsuario($nome, $codigo)
     {
+        $conexao = new ConectarBancoDados();
 
-        public function cadastrarUsuario($nome, $codigo)
-        {
-            $bancoDados = new ConectarBancoDados();
+        $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
 
-            $validarCadastro = new UsuarioService();
+        $cadastrarUsuario = mysqli_query($conexao->LogarBanco(), $query);
 
-            $query = "INSERT INTO usuario(nome, codigo) VALUES('$nome','$codigo')";
-
-            $cadastrarUsuario = mysqli_query($bancoDados->LogarBanco(), $query);
-
-            $validarCadastro->validarCadastroUsuario($codigo, $cadastrarUsuario);
-
-            if ($validarCadastro) {
-                return true;
-            }
-            echo "Falha ao cadastrar \n";
-            mysqli_close($bancoDados->LogarBanco());
-            return false;
-
+        if ($cadastrarUsuario) {
+            mysqli_close($conexao->LogarBanco());
+            return true;
         }
+        mysqli_close($conexao->LogarBanco());
+        return false;
 
-        public function validarCodigo()
-        {   
-            $bancoDados = new ConectarBancoDados();
-
-            $conexao = $bancoDados->LogarBanco();
-
-            $query = "SELECT codigo FROM usuario";
-
-            $resultadoQuery = mysqli_query($conexao, $query);
-            
-            if($resultadoQuery){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        public function listarCodigoObejto()
-        {
-            $bancoDados = new ConectarBancoDados();
-
-            $conexao = $bancoDados->LogarBanco();
-
-            $query = "SELECT codigo FROM usuario";
-
-            $resultadoQuery = mysqli_query($conexao, $query);
-
-            $result = mysqli_fetch_object($resultadoQuery);
-
-            if ($resultadoQuery) {
-                return $result;
-            }else{
-                return false;
-            }
-        }
     }
+
+}

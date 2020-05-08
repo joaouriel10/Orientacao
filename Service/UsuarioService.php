@@ -1,15 +1,17 @@
 <?php
 
-    class UsuarioService
-    {
-        public function validarCadastroUsuario($codigo, $cadastrarUsuario)
-        {
+require '../Repository/UsuarioRepository.php';
 
-            while($result = mysqli_fetch_array($cadastrarUsuario, MYSQLI_ASSOC)){
-                if ($result["codigo"] == $codigo) {
-                    return false;
-                }
-                return true;
-            }
+class UsuarioService
+{
+    public function cadastrarUsuario($nome, $codigo)
+    {
+        $usuarioRepository = new UsuarioRepository();
+
+        if($usuarioRepository->cadastrarUsuario($nome, $codigo)) {
+            return true;
         }
+
+        return false;
     }
+}

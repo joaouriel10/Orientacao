@@ -1,8 +1,17 @@
 <?php
 
-    include_once '../Controller/UsuarioController.php';
+require '../Controller/UsuarioController.php';
 
-    $cadastrarUsuario = new UsuarioController;
-    
-    $cadastrar = $cadastrarUsuario->Usuario($_POST['nome'], $_POST['codigo']);
+$cadastrarUsuario = new UsuarioController();
+
+$nome = $_POST['nome'];
+$codigo = $_POST['codigo'];
+
+$result = $cadastrarUsuario->cadastrarUsuario($nome, $codigo);
+
+if($result){
+    header('Location: ../View/CadastroUsuario.php');
+}else{
+    header('Location: ../View/index.html');
+}
 
